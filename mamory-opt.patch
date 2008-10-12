@@ -1,0 +1,22 @@
+--- configure.ac.gcc4optfix	2006-12-15 15:49:02.000000000 +0100
++++ configure.ac	2006-12-15 15:51:04.000000000 +0100
+@@ -46,7 +46,7 @@
+ 
+ AC_ARG_ENABLE(debug,
+ [  --enable-debug          Compilation flags to allow debugging],
+-  CFLAGS="-O0 -Wall -g ", CFLAGS="-g -DNDEBUG -O2 "
++  CFLAGS="-O0 -Wall -g ", CFLAGS="-g -DNDEBUG -O0 "
+ )
+ #AC_DEFINE(CFLAGS) 
+ 
+--- configure.gcc4optfix	2006-12-15 15:48:54.000000000 +0100
++++ configure	2006-12-15 15:55:17.000000000 +0100
+@@ -25405,7 +25405,7 @@
+ if test "${enable_debug+set}" = set; then
+   enableval=$enable_debug; CFLAGS="-O0 -Wall -g "
+ else
+-  CFLAGS="-g -DNDEBUG -O2 "
++  CFLAGS="-g -DNDEBUG -O0 "
+ 
+ fi
+ 
