@@ -8,6 +8,7 @@ License:        GPLv2 and LGPLv2
 URL:            http://mamory.sourceforge.net
 Source0:        http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Patch0:         %{name}-opt.patch
+Patch1:         %{name}-0.2.25-ppc64.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  expat-devel
@@ -33,6 +34,7 @@ use %{name}.
 %prep
 %setup -q
 %patch0 -p0 -b .opt~
+%patch1 -p0 -b .ppc64~
 
 # Avoid lib64 rpaths
 sed -i -e 's|"/lib /usr/lib|"/%{_lib} %{_libdir}|' configure
