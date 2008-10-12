@@ -1,6 +1,6 @@
 Name:           mamory
 Version:        0.2.25
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        ROM management API and commandline ROM manager for MAME
 
 Group:          Applications/Emulators
@@ -83,6 +83,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sun Oct 12 2008 Christopher Stone <chris.stone@gmail.com> 0.2.25-2
+- Add patch for ppc64 compiles
+- Clean up %%changelog
+
 * Sun Nov 25 2007 Christopher Stone <chris.stone@gmail.com> 0.2.25-1
 - Upstream sync
 - Fix up some rpmlint warnings
