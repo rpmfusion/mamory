@@ -1,6 +1,6 @@
 Name:           mamory
 Version:        0.2.25
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        ROM management API and commandline ROM manager for MAME
 
 Group:          Applications/Emulators
@@ -9,6 +9,7 @@ URL:            http://mamory.sourceforge.net
 Source0:        http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Patch0:         %{name}-opt.patch
 Patch1:         %{name}-0.2.25-ppc64.patch
+Patch2:         %{name}-0.2.25-utf8.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  expat-devel
@@ -35,6 +36,7 @@ use %{name}.
 %setup -q
 %patch0 -p0 -b .opt~
 %patch1 -p0 -b .ppc64~
+%patch2 -p0 -b .utf8~
 
 # Avoid lib64 rpaths
 sed -i -e 's|"/lib /usr/lib|"/%{_lib} %{_libdir}|' configure
@@ -83,6 +85,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Wed Oct 15 2008 Christopher Stone <chris.stone@gmail.com> 0.2.25-3
+- Convert mamory.c to UTF-8 format
+
 * Sun Oct 12 2008 Christopher Stone <chris.stone@gmail.com> 0.2.25-2
 - Add patch for ppc64 compiles
 - Clean up %%changelog

@@ -1,0 +1,18 @@
+--- src/mamory.c~	2008-10-15 14:51:01.000000000 -0700
++++ src/mamory.c	2008-10-15 14:52:47.000000000 -0700
+@@ -1,5 +1,5 @@
+ /*
+-  Copyright(C) 2002-2007 Pierre Mazière
++  Copyright(C) 2002-2007 Pierre MaziÃ¨re
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+@@ -249,7 +249,7 @@
+       Libmamory_DEBUG_On=FALSE;
+ #endif  
+ 
+-  fprintf(stderr,"Mamory v%i.%i.%i (c) 2002-2007 Pierre Mazière\n\n",
++  fprintf(stderr,"Mamory v%i.%i.%i (c) 2002-2007 Pierre MaziÃ¨re\n\n",
+ 	  LIB_VER_MAJ,LIB_VER_MIN,LIB_VER_MISC);
+ 
+   if(GetOption(Options,"-i",&optionvalue))
