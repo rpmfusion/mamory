@@ -1,6 +1,6 @@
 Name:           mamory
 Version:        0.2.25
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        ROM management API and commandline ROM manager for MAME
 
 Group:          Applications/Emulators
@@ -85,6 +85,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sun Mar 29 2009 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 0.2.25-4
+- rebuild for new F11 features
+
 * Wed Oct 15 2008 Christopher Stone <chris.stone@gmail.com> 0.2.25-3
 - Convert mamory.c to UTF-8 format
 
