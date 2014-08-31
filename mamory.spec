@@ -1,6 +1,6 @@
 Name:           mamory
 Version:        0.2.25
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        ROM management API and commandline ROM manager for MAME
 
 Group:          Applications/Emulators
@@ -85,6 +85,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sun Aug 31 2014 Sérgio Basto <sergio@serjux.com> - 0.2.25-7
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
+
 * Sun Mar 03 2013 Nicolas Chauvet <kwizart@gmail.com> - 0.2.25-6
 - Mass rebuilt for Fedora 19 Features
 
