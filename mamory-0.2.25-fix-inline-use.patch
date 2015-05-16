@@ -1,0 +1,104 @@
+diff -up mamory-0.2.25/common/memalloc.c~ mamory-0.2.25/common/memalloc.c
+--- mamory-0.2.25/common/memalloc.c~	2007-08-15 22:35:29.000000000 +0200
++++ mamory-0.2.25/common/memalloc.c	2015-05-16 14:15:20.333243922 +0200
+@@ -41,7 +41,7 @@ unsigned int memalloc_nb=0;
+ unsigned int record_memalloc=0;
+ #endif /* NDEBUG */
+ 
+-inline void *xmalloc(size_t num,char* file,int line)
++void *xmalloc(size_t num,char* file,int line)
+ {
+   void *new=malloc(num);
+   if(new==NULL)
+@@ -94,7 +94,7 @@ inline void *xmalloc(size_t num,char* fi
+   return new;
+ };
+ 
+-inline void *xrealloc(void *p,size_t num,char* file, int line)
++void *xrealloc(void *p,size_t num,char* file, int line)
+ {
+   void *new=NULL;
+   if(p==NULL)
+@@ -105,14 +105,14 @@ inline void *xrealloc(void *p,size_t num
+   return new;
+ };
+ 
+-inline void *xcalloc(size_t num, size_t size,char* file, int line)
++void *xcalloc(size_t num, size_t size,char* file, int line)
+ {
+   void *new=xmalloc(num*size,file,line);
+   memset(new,0,num*size);
+   return new;
+ }
+ 
+-inline char *xstrdup(const char *string,char *file, int line)
++char *xstrdup(const char *string,char *file, int line)
+ {
+   char *result;
+ 
+diff -up mamory-0.2.25/common/memalloc.h~ mamory-0.2.25/common/memalloc.h
+--- mamory-0.2.25/common/memalloc.h~	2015-05-16 13:57:24.000000000 +0200
++++ mamory-0.2.25/common/memalloc.h	2015-05-16 14:15:19.222268842 +0200
+@@ -24,10 +24,10 @@
+ #ifndef COMMON_MEMALLOC_H
+ #define COMMON_MEMALLOC_H
+ 
+-extern inline void *xcalloc(size_t num, size_t size,char *file,int line);
+-extern inline void *xmalloc(size_t num,char *file, int line);
+-extern inline void *xrealloc(void *p, size_t num,char *file,int line);
+-extern inline char *xstrdup(const char *string,char *file, int line);
++extern void *xcalloc(size_t num, size_t size,char *file,int line);
++extern void *xmalloc(size_t num,char *file, int line);
++extern void *xrealloc(void *p, size_t num,char *file,int line);
++extern char *xstrdup(const char *string,char *file, int line);
+ 
+ #ifndef NDEBUG
+ # define XCALLOC(type,num) ((type*)calloc((num),sizeof(type)))
+diff -up mamory-0.2.25/mamory/chainlst.c~ mamory-0.2.25/mamory/chainlst.c
+--- mamory-0.2.25/mamory/chainlst.c~	2007-08-15 22:35:30.000000000 +0200
++++ mamory-0.2.25/mamory/chainlst.c	2015-05-16 14:17:52.473364473 +0200
+@@ -25,7 +25,7 @@
+ #include "common.h"
+ #include <mamory/chainlst.h>
+ 
+-inline void *CLGetData(s_chainlst *CL)
++void *CLGetData(s_chainlst *CL)
+ {
+   return CL->Data;
+ };
+diff -up mamory-0.2.25/mamory/chainlst.h~ mamory-0.2.25/mamory/chainlst.h
+--- mamory-0.2.25/mamory/chainlst.h~	2007-08-15 22:35:30.000000000 +0200
++++ mamory-0.2.25/mamory/chainlst.h	2015-05-16 14:17:59.426325324 +0200
+@@ -42,7 +42,7 @@ s_chainlst *CLPrepend(s_chainlst *CL,voi
+ s_chainlst *CLInsert(s_chainlst *CL,void *data,unsigned int pos);
+ s_chainlst *CLRemove(s_chainlst *CL,void *data);
+ s_chainlst *CLRemoveAll(s_chainlst *CL,void *data);
+-inline void *CLGetData(s_chainlst *CL);
++void *CLGetData(s_chainlst *CL);
+ void FreeCL(s_chainlst *CL);
+ 
+ #endif
+diff -up mamory-0.2.25/mamory/printrom.c~ mamory-0.2.25/mamory/printrom.c
+--- mamory-0.2.25/mamory/printrom.c~	2007-08-15 22:35:30.000000000 +0200
++++ mamory-0.2.25/mamory/printrom.c	2015-05-16 14:18:07.308433533 +0200
+@@ -124,7 +124,7 @@ void fprintGamesListMamoryHeader(FILE *f
+ };
+ 
+ 
+-inline unsigned char *strquote(unsigned char *string)
++static inline unsigned char *strquote(unsigned char *string)
+ {
+   unsigned char *quotedstring=NULL;
+   unsigned int i=0;
+diff -up mamory-0.2.25/sortbox/sortbox.c~ mamory-0.2.25/sortbox/sortbox.c
+--- mamory-0.2.25/sortbox/sortbox.c~	2007-08-15 22:35:30.000000000 +0200
++++ mamory-0.2.25/sortbox/sortbox.c	2015-05-16 14:16:09.752216390 +0200
+@@ -168,7 +168,7 @@ void SortBox_AddLetter( s_SortBox *SortB
+  *    Sort the Alphabet used in the SortBox, respecting the priority
+  */
+ 
+-inline void SortAlphabet(s_SBAlphabet *Alphabet)
++static inline void SortAlphabet(s_SBAlphabet *Alphabet)
+ {
+   unsigned char ASCII[256]={0};
+   unsigned char *order;

@@ -1,17 +1,14 @@
 Name:           mamory
 Version:        0.2.25
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        ROM management API and commandline ROM manager for MAME
-
-Group:          Applications/Emulators
 License:        GPLv2 and LGPLv2
 URL:            http://mamory.sourceforge.net
 Source0:        http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Patch0:         %{name}-opt.patch
 Patch1:         %{name}-0.2.25-ppc64.patch
 Patch2:         %{name}-0.2.25-utf8.patch
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-
+Patch3:         %{name}-0.2.25-fix-inline-use.patch
 BuildRequires:  expat-devel
 
 %description
@@ -21,6 +18,7 @@ API.
 
 The distributed packages also contain a command line interface that use the
 potential of the library libmamory.so.
+
 
 %package devel
 Summary:        Development files for %{name}
@@ -37,6 +35,7 @@ use %{name}.
 %patch0 -p0 -b .opt~
 %patch1 -p0 -b .ppc64~
 %patch2 -p0 -b .utf8~
+%patch3 -p1
 
 # Avoid lib64 rpaths
 sed -i -e 's|"/lib /usr/lib|"/%{_lib} %{_libdir}|' configure
@@ -53,8 +52,7 @@ make %{?_smp_mflags}
 
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make install DESTDIR=$RPM_BUILD_ROOT
+%make_install
 
 # remove libtool archive file
 rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
@@ -64,27 +62,24 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
 make check
 
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
-
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 
 %files
-%defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING TODO DOCS/mamory*
 %{_bindir}/mamory
 %{_libdir}/*.so.*
 
 %files devel
-%defattr(-,root,root,-)
 %{_includedir}/%{name}
 %{_libdir}/*.so
 
 
 %changelog
+* Sat May 16 2015 Hans de Goede <j.w.r.degoede@gmail.com> - 0.2.25-8
+- Fix FTBFS (rf#3626)
+
 * Sun Aug 31 2014 Sérgio Basto <sergio@serjux.com> - 0.2.25-7
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
 
