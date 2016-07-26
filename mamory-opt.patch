@@ -5,7 +5,7 @@
  AC_ARG_ENABLE(debug,
  [  --enable-debug          Compilation flags to allow debugging],
 -  CFLAGS="-O0 -Wall -g ", CFLAGS="-g -DNDEBUG -O2 "
-+  CFLAGS="${RPM_OPT_FLAGS}", CFLAGS="-g -DNDEBUG ${RPM_OPT_FLAGS}"
++  CFLAGS="${RPM_OPT_FLAGS}", CFLAGS="${RPM_OPT_FLAGS} -DNDEBUG"
  )
  #AC_DEFINE(CFLAGS) 
  
@@ -16,7 +16,7 @@
    enableval=$enable_debug; CFLAGS="-O0 -Wall -g "
  else
 -  CFLAGS="-g -DNDEBUG -O2 "
-+  CFLAGS="-g -DNDEBUG ${RPM_OPT_FLAGS} "
++  CFLAGS="${RPM_OPT_FLAGS} -DNDEBUG"
  
  fi
  
