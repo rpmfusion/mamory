@@ -1,6 +1,6 @@
 Name:           mamory
 Version:        0.2.25
-Release:        8%{?dist}
+Release:        9%{?dist}
 Summary:        ROM management API and commandline ROM manager for MAME
 License:        GPLv2 and LGPLv2
 URL:            http://mamory.sourceforge.net
@@ -77,6 +77,9 @@ make check
 
 
 %changelog
+* Tue Jul 26 2016 Leigh Scott <leigh123linux@googlemail.com> - 0.2.25-9
+- Rebuild this dinosaur with the proper fedora build flags
+
 * Sat May 16 2015 Hans de Goede <j.w.r.degoede@gmail.com> - 0.2.25-8
 - Fix FTBFS (rf#3626)
 
