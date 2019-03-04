@@ -10,6 +10,7 @@ Patch1:         %{name}-0.2.25-ppc64.patch
 Patch2:         %{name}-0.2.25-utf8.patch
 Patch3:         %{name}-0.2.25-fix-inline-use.patch
 BuildRequires:  expat-devel
+BuildRequires:  gcc
 
 %description
 Mamory is a set of useful functions for emulators related projects.  It allows
