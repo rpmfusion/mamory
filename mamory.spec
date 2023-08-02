@@ -1,6 +1,6 @@
 Name:           mamory
 Version:        0.2.25
-Release:        23%{?dist}
+Release:        24%{?dist}
 Summary:        ROM management API and commandline ROM manager for MAME
 License:        GPLv2 and LGPLv2
 URL:            http://mamory.sourceforge.net
@@ -78,6 +78,9 @@ make check
 
 
 %changelog
+* Wed Aug 02 2023 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.2.25-24
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_39_Mass_Rebuild
+
 * Sun Aug 07 2022 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.2.25-23
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild and ffmpeg
   5.1
