@@ -33,10 +33,10 @@ use %{name}.
 
 %prep
 %setup -q
-%patch0 -p0 -b .opt~
-%patch1 -p0 -b .ppc64~
-%patch2 -p0 -b .utf8~
-%patch3 -p1
+%patch -P0 -p0 -b .opt~
+%patch -P1 -p0 -b .ppc64~
+%patch -P2 -p0 -b .utf8~
+%patch -P3 -p1
 
 # Avoid lib64 rpaths
 sed -i -e 's|"/lib /usr/lib|"/%{_lib} %{_libdir}|' configure
