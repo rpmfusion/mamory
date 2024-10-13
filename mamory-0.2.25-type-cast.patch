@@ -1,0 +1,76 @@
+--- mamory-0.2.25/mamory/admameli.c.debug	2007-08-16 05:35:30.000000000 +0900
++++ mamory-0.2.25/mamory/admameli.c	2024-10-13 09:46:33.752341715 +0900
+@@ -1180,7 +1180,7 @@ s_GameInfo *ReadGameInfo(s_GamesList *Ga
+ 	      else
+ 		{
+ 		  nbrdata=1;
+-		  Games=SortBox_FindTheWord(GamesSortBox,
++		  Games=(s_GameInfo**)SortBox_FindTheWord(GamesSortBox,
+ 					    GameInfo->More->CloneOf,
+ 					    (int*)&nbrdata);
+ 		  if(nbrdata==1)
+@@ -1852,7 +1852,7 @@ s_GamesList *GetGamesListFromAdMAMEliFil
+     {
+ //      printf("Game %s",TempGames[i]->Name);
+       nbrdata=1;
+-      Games=SortBox_FindTheWord(GamesSortBox,
++      Games=(s_GameInfo**)SortBox_FindTheWord(GamesSortBox,
+ 				TempGames[i]->More->CloneOf,
+ 				(int*)(&nbrdata));
+       if(nbrdata==1)
+@@ -1949,7 +1949,7 @@ s_GamesList *GetGamesListFromAdMAMEliFil
+ 	  if(GamesList->Games[i]->More->RomOf!=NULL)
+ 	    {
+ 	      nbrdata=1;
+-	      Games=SortBox_FindTheWord(GamesSortBox,
++	      Games=(s_GameInfo**)SortBox_FindTheWord(GamesSortBox,
+ 				GamesList->Games[i]->More->RomOf,
+ 				(int*)(&nbrdata));
+ 	      if(nbrdata==0)
+@@ -2032,7 +2032,7 @@ s_GamesList *GetGamesListFromAdMAMEliFil
+ 		    GamesList->Games[i]->More->RomOf)!=0)
+ 	    {
+ 	      nbrdata=1;
+-	      Games=SortBox_FindTheWord(GamesSortBox,
++	      Games=(s_GameInfo**)SortBox_FindTheWord(GamesSortBox,
+ 				GamesList->Games[i]->More->Resource,
+ 				(int*)(&nbrdata));
+ 	      if(nbrdata==0)
+--- mamory-0.2.25/mamory/amlxml.c.debug	2007-08-16 05:35:30.000000000 +0900
++++ mamory-0.2.25/mamory/amlxml.c	2024-10-13 09:47:53.091520835 +0900
+@@ -1470,7 +1470,7 @@ inGameListStartElementHandler(void *user
+ 		  else
+ 		    {
+ 		      nbrdata=1;
+-		      Games=SortBox_FindTheWord(Data->GamesSortBox,
++		      Games=(s_GameInfo**)SortBox_FindTheWord(Data->GamesSortBox,
+ 						Data->GameInfo->More->CloneOf,
+ 						(int*)&nbrdata);
+ 		      if(nbrdata==1)
+@@ -1690,7 +1690,7 @@ s_GamesList *GetGamesListFromAMLXMLFile(
+     {
+       //      printf("Game %s",Data->TempGames[i]->Name);
+       nbrdata=1;
+-      Games=SortBox_FindTheWord(Data->GamesSortBox,
++      Games=(s_GameInfo**)SortBox_FindTheWord(Data->GamesSortBox,
+ 				Data->TempGames[i]->More->CloneOf,
+ 				(int*)(&nbrdata));
+       if(nbrdata==1)
+@@ -1789,7 +1789,7 @@ s_GamesList *GetGamesListFromAMLXMLFile(
+ 	  if(GamesList->Games[i]->More->RomOf!=NULL)
+ 	    {
+ 	      nbrdata=1;
+-	      Games=SortBox_FindTheWord(Data->GamesSortBox,
++	      Games=(s_GameInfo**)SortBox_FindTheWord(Data->GamesSortBox,
+ 				GamesList->Games[i]->More->RomOf,
+ 				(int*)(&nbrdata));
+ 	      if(nbrdata==0)
+@@ -1872,7 +1872,7 @@ s_GamesList *GetGamesListFromAMLXMLFile(
+ 		    GamesList->Games[i]->More->RomOf)!=0)
+ 	    {
+ 	      nbrdata=1;
+-	      Games=SortBox_FindTheWord(Data->GamesSortBox,
++	      Games=(s_GameInfo**)SortBox_FindTheWord(Data->GamesSortBox,
+ 				GamesList->Games[i]->More->Resource,
+ 				(int*)(&nbrdata));
+ 	      if(nbrdata==0)

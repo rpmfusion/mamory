@@ -1,6 +1,6 @@
 Name:           mamory
 Version:        0.2.25
-Release:        26%{?dist}
+Release:        27%{?dist}
 Summary:        ROM management API and commandline ROM manager for MAME
 License:        GPLv2 and LGPLv2
 URL:            http://mamory.sourceforge.net
@@ -9,6 +9,7 @@ Patch0:         %{name}-opt.patch
 Patch1:         %{name}-0.2.25-ppc64.patch
 Patch2:         %{name}-0.2.25-utf8.patch
 Patch3:         %{name}-0.2.25-fix-inline-use.patch
+Patch4:         %{name}-0.2.25-type-cast.patch
 BuildRequires:  expat-devel
 BuildRequires:  gcc
 
@@ -37,6 +38,7 @@ use %{name}.
 %patch -P1 -p0 -b .ppc64~
 %patch -P2 -p0 -b .utf8~
 %patch -P3 -p1
+%patch -P4 -p1 -b .cast
 
 # Avoid lib64 rpaths
 sed -i -e 's|"/lib /usr/lib|"/%{_lib} %{_libdir}|' configure
@@ -78,6 +80,9 @@ make check
 
 
 %changelog
+* Sun Oct 13 2024 Mamoru TASAKA <mtasaka@fedoraproject.org> - 0.2.25-27
+- Fix -Werror=incompatible-pointer-types , cast return type properly
+
 * Fri Aug 02 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.2.25-26
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_41_Mass_Rebuild
 
