@@ -1,6 +1,6 @@
 Name:           mamory
 Version:        0.2.25
-Release:        27%{?dist}
+Release:        28%{?dist}
 Summary:        ROM management API and commandline ROM manager for MAME
 License:        GPLv2 and LGPLv2
 URL:            http://mamory.sourceforge.net
@@ -80,6 +80,9 @@ make check
 
 
 %changelog
+* Tue Jan 28 2025 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.2.25-28
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_42_Mass_Rebuild
+
 * Sun Oct 13 2024 Mamoru TASAKA <mtasaka@fedoraproject.org> - 0.2.25-27
 - Fix -Werror=incompatible-pointer-types , cast return type properly
 
