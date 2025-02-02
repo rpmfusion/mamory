@@ -1,0 +1,60 @@
+From 54e2bdf748b8aaa693c3eb7cd50e7dcd433fd570 Mon Sep 17 00:00:00 2001
+From: Mamoru TASAKA <mtasaka@fedoraproject.org>
+Date: Sun, 2 Feb 2025 12:00:58 +0900
+Subject: [PATCH] C23: support strict function prototype check
+
+Actually -std=gnu23 shows that the prototype of
+SetOptionConfFileName() was incorrect:
+Function() should have `s_Options *,s_Context *`
+arguments.
+---
+ scapi/conffile.c | 2 +-
+ scapi/scapi.h    | 6 ++++--
+ 2 files changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/scapi/conffile.c b/scapi/conffile.c
+index 02e61be..9d22af9 100644
+--- a/scapi/conffile.c
++++ b/scapi/conffile.c
+@@ -120,7 +120,7 @@ s_Context *SetOptionConfFileName(s_Options *Options,
+ 				 s_Context *Context,
+ 				 unsigned char *Option,
+ 				 unsigned char *token,
+-				 void (*Function)(s_Option *,s_Context *))
++				 void (*Function)(s_Options *,s_Context *))
+ {
+   unsigned int i,j;
+ 
+diff --git a/scapi/scapi.h b/scapi/scapi.h
+index 6efa664..0932ea4 100644
+--- a/scapi/scapi.h
++++ b/scapi/scapi.h
+@@ -49,13 +49,15 @@ typedef enum e_OptionFlags {SCAPI_NO_FLAGS=0x00,
+ 			    SCAPI_OPTION_USED=0x01,
+ 			    SCAPI_MULTIPLE_ARGS=0x02} e_OptionFlags;
+ 
++typedef struct s_Context s_Context;
++typedef struct s_Options s_Options;
+ typedef struct s_Option
+ {
+   e_OptionType Type; 
+   unsigned char *Name;
+   unsigned char *ShortName;
+   unsigned char *ConfFileName;
+-  void (*ConfFileFunc)();
++  void (*ConfFileFunc)(s_Options *,s_Context *);
+   unsigned int NbrSetArgs;
+   unsigned char **SetArgs;
+   unsigned char *ArgDescription;
+@@ -156,7 +158,7 @@ s_Context *SetOptionConfFileName(s_Options *Options,
+ 				 s_Context *Context,
+ 				 unsigned char *Option,
+ 				 unsigned char *token,
+-				 void (*Function)(s_Option *,s_Context *));
++				 void (*Function)(s_Options *,s_Context *));
+ 
+ s_Context *SetOptionDefaultValue(s_Context *Context,
+ 				 unsigned char *Option,
+-- 
+2.48.1
+

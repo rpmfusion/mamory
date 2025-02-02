@@ -1,6 +1,6 @@
 Name:           mamory
 Version:        0.2.25
-Release:        28%{?dist}
+Release:        29%{?dist}
 Summary:        ROM management API and commandline ROM manager for MAME
 License:        GPLv2 and LGPLv2
 URL:            http://mamory.sourceforge.net
@@ -10,6 +10,7 @@ Patch1:         %{name}-0.2.25-ppc64.patch
 Patch2:         %{name}-0.2.25-utf8.patch
 Patch3:         %{name}-0.2.25-fix-inline-use.patch
 Patch4:         %{name}-0.2.25-type-cast.patch
+Patch5:         %{name}-0.2.25-C23-support-strict-function-prototype-check.patch
 BuildRequires:  expat-devel
 BuildRequires:  gcc
 
@@ -39,6 +40,7 @@ use %{name}.
 %patch -P2 -p0 -b .utf8~
 %patch -P3 -p1
 %patch -P4 -p1 -b .cast
+%patch -P5 -p1 -b .c23
 
 # Avoid lib64 rpaths
 sed -i -e 's|"/lib /usr/lib|"/%{_lib} %{_libdir}|' configure
@@ -47,7 +49,6 @@ sed -i -e 's|"/lib /usr/lib|"/%{_lib} %{_libdir}|' configure
 for file in AUTHORS DOCS/mamory.html DOCS/mamory.xml ; do
     iconv -f iso8859-1 -t utf-8 $file > $file.conv && mv -f $file.conv $file
 done
-
 
 %build
 %configure --disable-static
@@ -80,6 +81,9 @@ make check
 
 
 %changelog
+* Sun Feb 02 2025 Mamoru TASAKA <mtasaka@fedoraproject.org> - 0.2.25-29
+- Support C23 strict function prototype
+
 * Tue Jan 28 2025 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.2.25-28
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_42_Mass_Rebuild
 
